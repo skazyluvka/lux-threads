@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.clothingstore.controller.CartController"
+            styleClass="root-pane">
+    <top>
+        <HBox styleClass="navbar" alignment="CENTER_LEFT" spacing="16">
+            <padding><Insets top="14" right="24" bottom="14" left="24"/></padding>
+            <Button text="← Назад" styleClass="btn-outline-sm" onAction="#handleBack"/>
+            <Label text="Корзина" styleClass="page-title"/>
+            <HBox HBox.hgrow="ALWAYS"/>
+            <Button text="Очистить корзину" styleClass="btn-danger-sm" onAction="#handleClearCart"/>
+        </HBox>
+    </top>
+    <center>
+        <HBox spacing="24" alignment="TOP_LEFT">
+            <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+            <!-- Items list -->
+            <VBox HBox.hgrow="ALWAYS" spacing="0" styleClass="card">
+                <Label fx:id="emptyLabel" text="Корзина пуста 🛒"
+                       styleClass="empty-label" visible="false" alignment="CENTER"
+                       maxWidth="Infinity"/>
+                <ScrollPane fitToWidth="true" styleClass="transparent-scroll" prefHeight="520">
+                    <VBox fx:id="cartItemsBox" spacing="0"/>
+                </ScrollPane>
+            </VBox>
+
+            <!-- Summary -->
+            <VBox fx:id="summaryBox" spacing="16" prefWidth="320" styleClass="card">
+                <padding><Insets top="24" right="20" bottom="24" left="20"/></padding>
+                <Label text="Итого" styleClass="dialog-title"/>
+
+                <HBox spacing="8">
+                    <TextField fx:id="promoField" promptText="Промокод" styleClass="text-field-dark" HBox.hgrow="ALWAYS"/>
+                    <Button text="Применить" styleClass="btn-outline-sm" onAction="#handleApplyPromo"/>
+                </HBox>
+                <Label fx:id="promoStatusLabel" visible="false" wrapText="true"/>
+
+                <Separator/>
+                <HBox><Label text="Подытог:" styleClass="muted-label" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="subtotalLabel" text="0 ₽" styleClass="muted-label"/></HBox>
+                <HBox><Label text="Скидка:" styleClass="muted-label" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="discountLabel" text="—" styleClass="success-label"/></HBox>
+                <Separator/>
+                <HBox><Label text="Итого:" styleClass="cart-total-label" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="totalLabel" text="0 ₽" styleClass="cart-total-value"/></HBox>
+
+                <Button fx:id="checkoutBtn" text="Оформить заказ →" styleClass="btn-primary"
+                        maxWidth="Infinity" onAction="#handleCheckout" disable="true"/>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

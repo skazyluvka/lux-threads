@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.clothingstore.controller.SellerController"
+           styleClass="root-stack">
+
+    <VBox fx:id="rootBox" spacing="0">
+
+        <!-- Шапка -->
+        <HBox fx:id="topBar" styleClass="navbar" alignment="CENTER_LEFT" spacing="12">
+            <padding><Insets top="14" right="20" bottom="14" left="20"/></padding>
+            <Button fx:id="backBtn" text="← Назад" styleClass="btn-outline-sm" onAction="#handleBack"/>
+            <Label text="Профиль продавца" styleClass="page-title"/>
+        </HBox>
+
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" VBox.vgrow="ALWAYS"
+                    styleClass="transparent-scroll">
+            <VBox fx:id="contentBox" spacing="0">
+                <padding><Insets top="0" right="0" bottom="40" left="0"/></padding>
+
+                <!-- Карточка продавца -->
+                <VBox fx:id="sellerCard" spacing="12" alignment="CENTER"
+                      style="-fx-background-color:#13131f; -fx-padding:32px;">
+
+                    <StackPane fx:id="avatarBox"
+                               prefWidth="90" prefHeight="90"
+                               maxWidth="90" maxHeight="90"/>
+
+                    <Label fx:id="sellerNameLabel" styleClass="seller-name"/>
+                    <Label fx:id="ratingLabel" styleClass="seller-rating"/>
+
+                    <!-- ИСПРАВЛЕНО: maxWidth="Infinity" + alignment=CENTER -->
+                    <Label fx:id="bioLabel" styleClass="seller-bio" wrapText="true"
+                           maxWidth="Infinity" alignment="CENTER"/>
+                </VBox>
+
+                <!-- Таб-переключатель -->
+                <HBox fx:id="tabBar" alignment="CENTER"
+                      style="-fx-background-color:#13131f; -fx-padding:0 32 16 32;">
+                    <StackPane style="-fx-background-color:#1a1a2e; -fx-background-radius:50px;">
+                        <HBox spacing="0">
+                            <Button fx:id="tabProducts" text="Товары"
+                                    styleClass="tab-btn-active"
+                                    onAction="#handleTabProducts"/>
+                            <Button fx:id="tabPosts" text="Публикации"
+                                    styleClass="tab-btn"
+                                    onAction="#handleTabPosts"/>
+                        </HBox>
+                    </StackPane>
+                </HBox>
+
+                <!-- Контент таба -->
+                <VBox fx:id="tabContent" spacing="16">
+                    <padding><Insets top="16" right="20" bottom="20" left="20"/></padding>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </VBox>
+</StackPane>

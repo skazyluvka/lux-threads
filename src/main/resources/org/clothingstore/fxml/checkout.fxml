@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.clothingstore.controller.CheckoutController"
+            styleClass="root-pane">
+    <top>
+        <HBox styleClass="navbar" alignment="CENTER_LEFT" spacing="16">
+            <padding><Insets top="14" right="24" bottom="14" left="24"/></padding>
+            <Button text="← Назад" styleClass="btn-outline-sm" onAction="#handleBack"/>
+            <Label text="Оформление заказа" styleClass="page-title"/>
+        </HBox>
+    </top>
+    <center>
+        <HBox spacing="24" alignment="TOP_LEFT">
+            <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+            <!-- Delivery form -->
+            <VBox HBox.hgrow="ALWAYS" spacing="16" styleClass="card">
+                <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+                <Label text="Данные доставки" styleClass="section-title"/>
+
+                <VBox spacing="6">
+                    <Label text="Имя получателя *" styleClass="field-label"/>
+                    <TextField fx:id="nameField" promptText="Иван Иванов" styleClass="text-field-dark"/>
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Телефон *" styleClass="field-label"/>
+                    <TextField fx:id="phoneField" promptText="+7 (999) 000-00-00" styleClass="text-field-dark"/>
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Адрес доставки *" styleClass="field-label"/>
+                    <TextField fx:id="addressField" promptText="Город, улица, дом, квартира" styleClass="text-field-dark"/>
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Комментарий к заказу" styleClass="field-label"/>
+                    <TextArea fx:id="commentArea" promptText="Оставьте комментарий..." styleClass="text-area-dark"
+                              prefHeight="90" wrapText="true"/>
+                </VBox>
+                <Label fx:id="msgLabel" visible="false" wrapText="true"/>
+            </VBox>
+
+            <!-- Order summary -->
+            <VBox spacing="16" prefWidth="340" styleClass="card">
+                <padding><Insets top="24" right="20" bottom="24" left="20"/></padding>
+                <Label text="Состав заказа" styleClass="section-title"/>
+                <VBox fx:id="orderSummaryBox" spacing="6"/>
+                <Separator/>
+                <Label fx:id="promoLabel" styleClass="success-label" visible="false"/>
+                <HBox><Label text="Подытог:" styleClass="muted-label" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="subtotalLabel" text="—" styleClass="muted-label"/></HBox>
+                <HBox><Label text="Скидка:" styleClass="muted-label" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="discountLabel" text="—" styleClass="success-label"/></HBox>
+                <Separator/>
+                <HBox><Label text="Итого:" styleClass="cart-total-label" HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="totalLabel" text="—" styleClass="cart-total-value"/></HBox>
+
+                <VBox spacing="8" styleClass="info-box">
+                    <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+                    <Label text="ℹ️ Это демо-заказ" styleClass="field-label"/>
+                    <Label text="Реальная оплата не производится. Заказ будет создан со статусом «Ожидает»."
+                           styleClass="muted-label" wrapText="true"/>
+                </VBox>
+
+                <Button fx:id="placeOrderBtn" text="✓ Подтвердить заказ" styleClass="btn-success"
+                        maxWidth="Infinity" onAction="#handlePlaceOrder"/>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:id="rootStack"
+           fx:controller="org.clothingstore.controller.MainController"
+           style="-fx-background-color:#0e0e1a;">
+
+    <!-- ══════════ ОСНОВНОЙ КОНТЕНТ ══════════ -->
+    <BorderPane style="-fx-background-color:#0e0e1a;">
+
+        <!-- NAVBAR -->
+        <top>
+            <HBox alignment="CENTER_LEFT" spacing="16"
+                  style="-fx-background-color:#13131f;
+                         -fx-border-color:#1e1e30;
+                         -fx-border-width:0 0 1 0;">
+                <padding>
+                    <Insets top="14" right="24" bottom="14" left="24"/>
+                </padding>
+                <Label text="LUXE THREADS"
+                       style="-fx-text-fill:#c9a96e;
+                              -fx-font-size:20px;
+                              -fx-font-weight:bold;"/>
+                <HBox HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="searchField"
+                           promptText="🔍 Поиск товаров..."
+                           styleClass="search-field"
+                           prefWidth="260"/>
+                <HBox HBox.hgrow="ALWAYS"/>
+                <Button fx:id="adminBtn"
+                        text="⚙ Админ"
+                        styleClass="btn-outline-sm"
+                        onAction="#handleAdmin"
+                        visible="false"/>
+                <Button text="👤 Профиль"
+                        styleClass="btn-outline-sm"
+                        onAction="#handleProfile"/>
+                <StackPane>
+                    <Button text="🛒 Корзина"
+                            styleClass="btn-outline-sm"
+                            onAction="#handleCart"/>
+                    <Label fx:id="cartBadge"
+                           styleClass="cart-badge"
+                           visible="false"
+                           StackPane.alignment="TOP_RIGHT"/>
+                </StackPane>
+                <Label fx:id="userLabel"
+                       style="-fx-text-fill:#8888aa; -fx-font-size:13px;"/>
+                <Button text="Выйти"
+                        styleClass="btn-danger-sm"
+                        onAction="#handleLogout"/>
+            </HBox>
+        </top>
+
+        <!-- SIDEBAR -->
+        <left>
+            <VBox spacing="0" prefWidth="200"
+                  style="-fx-background-color:#13131f;
+                         -fx-border-color:#1e1e30;
+                         -fx-border-width:0 1 0 0;">
+                <padding>
+                    <Insets top="24" right="12" bottom="24" left="12"/>
+                </padding>
+                <Label text="КАТЕГОРИИ"
+                       style="-fx-text-fill:#c9a96e;
+                              -fx-font-size:11px;
+                              -fx-font-weight:bold;
+                              -fx-padding:0 0 12 4;"/>
+                <VBox fx:id="categoryBar" spacing="4" fillWidth="true"/>
+            </VBox>
+        </left>
+
+        <!-- PRODUCT GRID -->
+        <center>
+            <ScrollPane fx:id="scrollPane"
+                        fitToWidth="true"
+                        style="-fx-background-color:#0e0e1a;
+                               -fx-background:#0e0e1a;">
+                <FlowPane fx:id="productGrid"
+                          hgap="20" vgap="20"
+                          style="-fx-background-color:#0e0e1a;
+                                 -fx-padding:24px;">
+                </FlowPane>
+            </ScrollPane>
+        </center>
+
+    </BorderPane>
+
+    <!-- ══════════ OVERLAY (поверх всего) ══════════ -->
+    <VBox fx:id="overlayBg"
+          alignment="CENTER"
+          visible="false"
+          managed="false"
+          style="-fx-background-color:rgba(0,0,0,0.75);">
+
+        <!-- Панель деталей товара -->
+        <VBox fx:id="detailPanel"
+              alignment="TOP_CENTER"
+              maxWidth="500"
+              maxHeight="680"
+              style="-fx-background-color:#13131f;
+                     -fx-background-radius:20px;
+                     -fx-effect:dropshadow(gaussian,
+                         rgba(0,0,0,0.9), 40, 0, 0, 0);">
+        </VBox>
+
+    </VBox>
+
+</StackPane>

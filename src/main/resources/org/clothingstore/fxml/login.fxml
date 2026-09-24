@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.clothingstore.controller.LoginController"
+           styleClass="root-pane">
+    <VBox alignment="CENTER" spacing="0" maxWidth="420">
+        <VBox styleClass="auth-card" spacing="20">
+            <padding><Insets top="48" right="40" bottom="48" left="40"/></padding>
+
+            <Label text="LUXE THREADS" styleClass="brand-logo"/>
+            <Label text="Войдите в аккаунт" styleClass="auth-subtitle"/>
+
+            <VBox spacing="8">
+                <Label text="Email" styleClass="field-label"/>
+                <TextField fx:id="emailField" promptText="your@email.com" styleClass="text-field-dark"/>
+            </VBox>
+
+            <VBox spacing="8">
+                <Label text="Пароль" styleClass="field-label"/>
+                <PasswordField fx:id="passwordField" promptText="••••••••" styleClass="text-field-dark"/>
+            </VBox>
+
+            <Label fx:id="errorLabel" styleClass="error-label" visible="false" wrapText="true"/>
+
+            <Button fx:id="loginBtn" text="Войти" styleClass="btn-primary"
+                    maxWidth="Infinity" onAction="#handleLogin"/>
+
+            <Separator styleClass="auth-separator"/>
+
+            <HBox spacing="12" alignment="CENTER">
+                <Button text="Нет аккаунта? Зарегистрироваться"
+                        styleClass="btn-link" onAction="#handleRegister"/>
+            </HBox>
+            <HBox alignment="CENTER">
+                <Button text="Забыли пароль?" styleClass="btn-link-sm"
+                        onAction="#handleForgotPassword"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</StackPane>
